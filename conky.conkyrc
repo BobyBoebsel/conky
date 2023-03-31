@@ -1,0 +1,81 @@
+conky.config = {
+  alignment = 'bottom_right',
+  background = false,
+  border_width = 0,
+  draw_graph_borders = false,
+
+  color0 = '#2A558C',
+  color1 = '#6698D9',
+  color2 = '#2E4159',
+  color3 = '#B3CFF2',
+  color4 = '#BF8B4B',
+
+  color5= '#57B1DE',
+  color6= '#1793D1',
+
+  diskio_avg_samples = 3,
+  double_buffer = true,
+  font = 'Roboto Mono:size=8',
+  gap_x = 10,
+  gap_y = 10,
+  if_up_strictness = 'link',
+  net_avg_samples = 4,
+  own_window = true,
+  own_window_argb_visual = true,
+  own_window_argb_value = 64,
+  update_interval = 1,
+  update_interval_on_battery = 5,
+  use_spacer = 'none',
+  use_xft = true,
+
+  own_window = true,
+  own_window_type = 'normal',
+  own_window_transparent = false,
+  own_window_hints = 'undecorated,sticky,below,skip_taskbar,skip_pager',
+  own_window_argb_visual = true,
+  own_window_argb_value = 0,
+  double_buffer = true,
+}
+
+conky.text = [[
+
+Uptime: ${goto 55}${color1}${uptime}${color3}\
+${goto 120}Battery: ${goto 165}${color1}${battery_percent}%${color3}\
+${goto 200}Tempratur: ${goto 265}${color1}${acpitemp}°C${color3}\
+${goto 300}SWAP : ${goto 340}${color1}${swapperc}%${color3}
+CPU0: ${cpu cpu1}% ${goto 70}${color1}${cpubar cpu1 8,150}${color3}\
+${goto 225}CPU1: ${cpu cpu2}% ${goto 290}${color1}${cpubar cpu2 8,180}${color3}
+CPU2: ${cpu cpu3}% ${goto 70}${color1}${cpubar cpu3 8,150}${color3}\
+${goto 225}CPU3: ${cpu cpu4}% ${goto 290}${color1}${cpubar cpu4 8,180}${color3}
+CPU4: ${cpu cpu5}% ${goto 70}${color1}${cpubar cpu5 8,150}${color3}\
+${goto 225}CPU5: ${cpu cpu6}% ${goto 290}${color1}${cpubar cpu6 8,180}${color3}
+CPU6: ${cpu cpu7}% ${goto 70}${color1}${cpubar cpu7 8,150}${color3}\
+${goto 225}CPU7: ${cpu cpu8}% ${goto 290}${color1}${cpubar cpu8 8,180}${color3}
+RAM (${mem}/${memmax}) :${goto 125}\
+${color1}${memgraph 20,350}${color3}
+HDD (${fs_used /}/${fs_size /}) : \
+${color1}\
+${goto 125}${fs_bar 8,350 /}
+${color3}
+${color3}Name             ${goto 100} PID            ${goto 160} CPU%  ${goto 200} MEM% ${goto 240} | Name             ${goto 340} PID   ${goto 400}  CPU%   ${goto 440} MEM%
+${color3}${top name 1}     ${color1} ${goto 100} ${top pid 1} ${goto 160} ${top cpu 1}  ${goto 200}${top mem 1} ${goto 240} ${color3}| ${top_mem name 1}     ${goto 340}${color1}${top_mem pid 1} ${goto 400}  ${top_mem cpu 1} ${goto 440} ${top_mem mem 1}
+${color3}${top name 2}     ${color1} ${goto 100} ${top pid 2} ${goto 160} ${top cpu 2} ${goto 200} ${top mem 2} ${goto 240} ${color3}| ${top_mem name 2}     ${goto 340}${color1}${top_mem pid 2} ${goto 400}  ${top_mem cpu 2} ${goto 440} ${top_mem mem 2}
+${color3}${top name 3}     ${color1} ${goto 100} ${top pid 3} ${goto 160} ${top cpu 3} ${goto 200} ${top mem 3} ${goto 240} ${color3}| ${top_mem name 3}     ${goto 340}${color1}${top_mem pid 3} ${goto 400}  ${top_mem cpu 3} ${goto 440} ${top_mem mem 3}
+${hr}
+${if_up wlp3s0}\
+wlp3s0: ${goto 70}${color1}${addr wlp3s0}${color3} ${color3}
+${downspeedgraph wlp3s0 30,200}\
+${goto 220}\
+${downspeedgraph wlp3s0 30,200}
+Down: ${color1}${totaldown wlp3s0}/${downspeed wlp3s0}${color3}\
+${goto 220}\
+Up: ${color1}${totalup wlp3s0}/${upspeed wlp3s0}${color3}
+${color3}Inbound Connection ${alignr} Local Service/Port
+${color1} ${tcp_portmon 1 32767 rhost 0} ${alignr} ${tcp_portmon 1 32767 lservice 0}
+ ${tcp_portmon 1 32767 rhost 1} ${alignr} ${tcp_portmon 1 32767 lservice 1}
+${color3}Outbound Connection ${alignr} Remote Service/Port
+${color1}${tcp_portmon 32768 61000 rhost 0} ${alignr} ${tcp_portmon 32768 61000 rservice 0}
+ ${tcp_portmon 32768 61000 rhost 1} ${alignr} ${tcp_portmon 32768 61000 rservice 1}
+${endif}\
+${image /home/bobby/Bilder/anon.jpg -p 0,20 -s 600x500}
+]]
